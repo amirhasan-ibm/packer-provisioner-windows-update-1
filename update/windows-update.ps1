@@ -222,8 +222,7 @@ if ($updatesToInstall.Count) {
     $installResult = $updateInstaller.Install()
     $resultCode = $installResult.ResultCode
     Write-Output "DEBUG installResult ResultCode = $resultCode"
-    $rebootRequired = $installResult.RebootRequired
-    ExitWhenRebootRequired ($rebootRequired)
+    ExitWhenRebootRequired ($installResult.RebootRequired -or $rebootRequired)
 } else {
     Write-Output 'No Windows updates found'
 }
