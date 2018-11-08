@@ -223,15 +223,15 @@ if ($updatesToInstall.Count) {
     {
        $installResult = $updateInstaller.Install()
        $resultCode = $installResult.ResultCode
+       Write-Output "DEBUG installResult ResultCode = $resultCode"
     }
     Catch
     {
        $ErrorMessage = $_.Exception.Message
        Write-Output $ErrorMessage
     }
-    Write-Output "DEBUG installResult ResultCode = $resultCode"
-    Write-Output "DEBUG installResult RebootRequired = $resultCode"
     if ($installResult.RebootRequired) {
+       Write-Output "DEBUG installResult RebootRequired"
        $rebootRequired = $installResult.RebootRequired
     }
     ExitWhenRebootRequired ($rebootRequired)
